@@ -1,0 +1,8 @@
+{
+    "method": "user",
+    "user": {
+        "name": "username",
+        "password": "password"
+    },
+    "token": "token"
+}
