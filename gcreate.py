@@ -33,7 +33,7 @@ def main():
 
     store = False
     # Check cred.json for a GitHub token
-    with open('cred.json', 'r') as f:
+    with open('./cred.json', 'r') as f:
         cred = json.load(f)
         log(cred)
 
