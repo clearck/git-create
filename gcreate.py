@@ -1,4 +1,5 @@
 import argparse
+import os
 import sys
 import json
 import subprocess
@@ -32,8 +33,9 @@ def main():
         exit(1)
 
     store = False
+    script_dir = os.path.dirname(__file__)
     # Check cred.json for a GitHub token
-    with open('./cred.json', 'r') as f:
+    with open(f'{script_dir}/cred.json', 'r') as f:
         cred = json.load(f)
         log(cred)
 
@@ -58,7 +60,7 @@ def main():
         try:
             g = Github(token)
             user = g.get_user()
-            user.get_repos()
+            log(user.get_repos().totalCount)
             success = True
         except BadCredentialsException:
             success = False
@@ -70,7 +72,7 @@ def main():
     # At this point g and user are guaranteed to have values and the token works.
     # Store the new token if requested.
     if store:
-        with open('cred.json', 'w') as f:
+        with open(f'{script_dir}/cred.json', 'w') as f:
             f.write(json.dumps({'token': token}))
 
     # TODO Error handling for duplicate names
