@@ -39,7 +39,7 @@ def main():
 
         token = cred['token']
 
-        if token is None:
+        if token == "token":
             token = query_token()
         else:
             answer = query_yes_no("Previous token found. Do you want to use it?")
